@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+{% block block_title %} User Profile {% endblock %}
+{% block body_block %}
+
+{% if user.user_profile %}
+    <img src="/media/{{ user.user_profile.profile_pic }}" alt="Profile Image">
+
+{% else %}
+
+    <img src="{% static 'images/image.jpg' %}" alt="Profile Image" width="150px">
+    <br>
+    <a href="" class="btn btn-primary btn-sm">Change Image</a>
+
+    <p><h5>Username : {{ user.username }}</h5></p>
+    <p><h6>Email : {{ user.email }}</h6></p>
+    <p><h6>Name : {{ user.first_name }} {{ user.last_name }}</h6></p>
+
+    <a href="{% url 'app_login:update_profile' %}" class="btn btn-primary btn-sm">Update Profile</a>
+
+{% endif %}
+
+{% endblock %}
