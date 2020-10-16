@@ -5,20 +5,28 @@
 {% block body_block %}
 
 {% if user.user_profile %}
-    <img src="/media/{{ user.user_profile.profile_pic }}" alt="Profile Image">
+    <img src="/media/{{ user.user_profile.profile_pic }}" alt="Profile Image" width="150px;" class="rounded-circle">
+    <br>
+    <br>
+    <a href="{% url 'app_login:update_pic' %}" class="btn btn-primary btn-sm">Update Image</a>
+    <br> 
+    <br>
 
 {% else %}
 
-    <img src="{% static 'images/image.jpg' %}" alt="Profile Image" width="150px">
+    <img src="{% static 'images/image.jpg' %}" alt="Profile Image" width="150px;">
     <br>
-    <a href="" class="btn btn-primary btn-sm">Change Image</a>
+    <br>
+    <a href="{% url 'app_login:pic_change' %}" class="btn btn-primary btn-sm">Change Image</a>
+    <br>
+    <br>
 
+{% endif %}
     <p><h5>Username : {{ user.username }}</h5></p>
     <p><h6>Email : {{ user.email }}</h6></p>
     <p><h6>Name : {{ user.first_name }} {{ user.last_name }}</h6></p>
-
+    <br>
     <a href="{% url 'app_login:update_profile' %}" class="btn btn-primary btn-sm">Update Profile</a>
 
-{% endif %}
 
 {% endblock %}

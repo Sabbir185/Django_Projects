@@ -78,12 +78,30 @@ def update_password(request):
 @login_required
 def profile_pic_change(request):
     form = ProfilePicForm()
+    changed = False
     if request.method =="POST":
         form = ProfilePicForm(request.POST , request.FILES)
         if form.is_valid():
             user_obj = form.save(commit=False)
             user_obj.user = request.user
             user_obj.save()
-            return HttpResponseRedirect(reverse('app_login:profile'))
-    return render(request,'app_login/change_profile_pic.html',context={'form':form})
+            changed = True
+            return HttpResponseRedirect(reverse('app_login:user_profile'))
+
+    return render(request,'app_login/change_profile_pic.html',context={'form':form , 'changed':changed, })
+
+
+@login_required
+def update_pic(request):
+    form = ProfilePicForm(instance=request.user.user_profile)
+    changed = False
+    if request.method == "POST":
+        form = ProfilePicForm(request.POST,request.FILES,instance=request.user.user_profile)
+        if form.is_valid():
+            form.save()
+            changed = True
+            #return HttpResponseRedirect(reverse('app_login:user_profile'))
+
+    return render(request,'app_login/change_profile_pic.html',context={'form':form, 'changed':changed, })
+
 
