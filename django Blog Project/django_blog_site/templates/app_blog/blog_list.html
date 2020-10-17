@@ -17,6 +17,7 @@
                 <p>{{ blog.blog_content|range_filter|linebreaks }}</p>
                 <a href="{% url 'app_blog:blog_details' slug=blog.slug %}">Read More</a>
                 <h6>Posted by : <a href="">@{{ blog.author }}</a></h6>
+                <p>{{ blog.blog_like.count }} likes | {{ blog.blog_comment.count }} comments</p>
             </div>
 
         </div>

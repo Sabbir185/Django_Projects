@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% load custom_filters %}
+{% block block_title %} {{ user }} {% endblock %}
+{% block body_block %}
+
+{% for blog in user.post_author.all %}
+
+    <div class="row">
+        <div class="col-sm-4" style="padding-top: 15px;">
+            <h4>{{ blog.blog_title }}</h4>
+            <p><em>Published date : {{ blog.publish_date }}</em></p>
+            <p><em>Updated date : {{ blog.update_date }}</em></p>
+            <img src="/media/{{ blog.blog_image }}" alt="{{ blog.blog_image }}" width="100%">
+        </div>
+        <div class="col-sm-6">
+            <p>{{ blog.blog_content|range_filter|linebreaks }}</p>
+            <a href="{% url 'app_blog:blog_details' slug=blog.slug %}">Read More</a>
+            <p>{{ blog.blog_like.count }} likes | {{ blog.blog_comment.count }} comments</p>
+            <a href="{% url 'app_blog:edit_blog' pk=blog.pk %}" class="btn btn-warning btn-sm">Edit Blog</a>
+        </div>
+    </div>
+    <br>
+    <br>
+
+
+{% endfor %}
+
+{% endblock %}

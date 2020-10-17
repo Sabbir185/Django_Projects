@@ -8,6 +8,7 @@
         <h4>{{ blog.blog_title }}</h4>
         <p><i>Published date : {{ blog.publish_date }}</i></p>
         <p><i>Updated date : {{ blog.update_date }}</i></p>
+        <p>{{ blog.blog_like.count }} like | {{ blog.blog_comment.count }} comments</p>
     </div>
     <div class="col-sm-6">
         <img src="/media/{{blog.blog_image}}" alt="Image" width="100%">
@@ -15,6 +16,18 @@
 </div>
 
 <p>{{ blog.blog_content|linebreaks }}</p>
+
+<div>
+    {% if not like %}
+        <a href="{% url 'app_blog:like_post' slug=blog.slug %}">   <!----like functionality-->
+            <i class="fa fa-thumbs-o-up fa-2x"><h6>Like</h6></i>
+        </a>
+    {% else %}
+        <a href="{% url 'app_blog:unlike_post' pk=blog.pk %}">   <!----unlike functionality-->
+            <i class="fa fa-thumbs-o-down fa-2x"><h6>Liked</h6></i>
+        </a>
+    {% endif %}
+</div>
 
 <div class="row">
     
