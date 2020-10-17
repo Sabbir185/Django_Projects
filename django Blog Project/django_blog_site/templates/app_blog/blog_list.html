@@ -1,9 +1,28 @@
 {% extends 'base.html' %}
+{% load custom_filters %}
 {% block block_title %} Home {% endblock %}
 {% block body_block %}
 
+<h4>Latest Blogs</h4>
 
-<h2>Ok,it done!</h2>
+<div style="margin-top: 40px;">
+    {% for blog in blogs %}
+        <div class="row">
+            <div class="col-sm-4">
+                <h5>{{ blog.blog_title }}</h5>
+                <i><p>{{ blog.publish_date }}</p></i>
+                <img src="/media/{{ blog.blog_image }}" alt="{{blog.blog_title}}" width="100%">
+            </div>
+            <div class="col-sm-8">
+                <p>{{ blog.blog_content|range_filter|linebreaks }}</p>
+                <a href="{% url 'app_blog:blog_details' slug=blog.slug %}">Read More</a>
+                <h6>Posted by : <a href="">@{{ blog.author }}</a></h6>
+            </div>
 
+        </div>
+        <br>
+        <br>
+    {% endfor %}
+</div>
 
 {% endblock %}
