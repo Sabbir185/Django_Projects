@@ -1,9 +1,10 @@
 {% extends 'base.html' %}
 {% load crispy_forms_tags %}
-{% block title_block %} {{ title }} {% endblock %}
+{% block title_block %} {{title}} {% endblock %}
+
 {% block css_block %}
     <style>
-        .sign_up{
+         .sign_up{
             width: 550px;
             border: 1px solid rgb(132, 233, 247);
             padding: 30px;
@@ -19,23 +20,21 @@
 {% block body_block %}
 
     <center>
-        <div class="sign_up">
-            <div class="alert alert-secondary" role="alert" >
-                <h4>Please Sign Up</h4>
-                <h4>Now !</h4>
-                <form method="POST" >
+        <div class="log_in">
+            <div class="alert alert-secondary" role="alert">
+                <h4>Please Login</h4>
+                <form method="POST">
                     {{ form|crispy }}
                     {% csrf_token %}
-                    <button type="submit" style="width: 100%; font-weight: bold;" class="btn btn-warning btn-sm">Sign Up</button>
+                    <button type="submit" class="btn btn-warning btn-sm" style="width: 100%;font-weight: bold;">Login</button>
                 </form>
             </div>
         </div>
         <br>
-        <div class="log_in">
-            <p>have already an account? <a href="{% url 'app_login:login' %}" style="font-weight: bold;">login here</a></p>
+        <div class="sign_up">
+            <p>Don't have an account? <a href="{% url 'app_login:sign_up' %}" style="font-weight: bold;">Sign up</a></p>
         </div>
+    
     </center>
-    <br>
-    <br>
 
 {% endblock %}
