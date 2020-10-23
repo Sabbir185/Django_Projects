@@ -1,6 +1,23 @@
 {% extends 'navbar.html' %}
 {% block title_block %} {{user.user_profile.full_name}} (@{{user.username}})  {% endblock %}
-
+{% block css_block %}
+    <style>
+        .crop{
+            width: 200px;
+            height: 200px;
+            overflow: hidden;
+            border: 4px solid rgb(47, 154, 255);
+            border-radius: 5px;
+            margin-left: 10px;
+            margin-top: 5px;
+        }
+        .crop img{
+            width: 400px;
+            height: 300px;
+            margin: -75px 0 0 -100px;
+        }
+    </style>
+{% endblock %}
 
 {% block body_block %}
 
@@ -26,5 +43,49 @@
 </div>
 
 <hr>
+
+<!-- Button to Open the Modal -->
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">
+    new post
+  </button>
+  
+  <!-- The Modal -->
+  <div class="modal" id="myModal">
+    <div class="modal-dialog">
+      <div class="modal-content">
+  
+        <!-- Modal Header -->
+        <div class="modal-header">
+          <h4 class="modal-title">Post a photo</h4>
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+        </div>
+  
+        <!-- Modal body -->
+        <div class="modal-body">
+          <form method="POST" enctype="multipart/form-data">
+              {{ form.as_p }}
+              {% csrf_token %}
+              <button type="submit" class="btn btn-warning btn-sm">Post</button>
+          </form>
+        </div>
+  
+        <!-- Modal footer -->
+        <div class="modal-footer">
+          <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+        </div>
+  
+      </div>
+    </div>
+  </div>
+  <br>
+  <br>
+
+<div class="row">
+    {% for post in user.post_author.all %}
+    <div class="crop">
+        <img src="/media/{{ post.post_image }}" title="{{post.caption}}"> 
+    </div>
+    {% endfor %}
+</div>
 
 {% endblock %}

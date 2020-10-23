@@ -24,9 +24,18 @@
           <li class="nav-item active">
             <a class="nav-link" href="{% url 'app_post:home' %}">Home</a>
           </li>
+          &nbsp; &nbsp; &nbsp; &nbsp;
+          <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+            <form class="form-inline" method="GET">
+              <input class="form-control mr-sm-2" type="text" name="search" placeholder="Search">
+              <button class="btn btn-success" type="submit">Search</button>
+            </form>
+          </nav>
+          &nbsp; &nbsp; &nbsp;
           <li class="nav-item">
             <a class="nav-link" href="{% url 'app_login:logout' %}">Logout</a>
           </li>
+          &nbsp; &nbsp; &nbsp;
           <li class="nav-item">
             {% if user.user_profile.profile_pic %}
             <a class="nav-link" href="{% url 'app_login:user' %}"><img src="/media/{{ user.user_profile.profile_pic}} " width='40px' height="40px" class="rounded-circle"></a>
