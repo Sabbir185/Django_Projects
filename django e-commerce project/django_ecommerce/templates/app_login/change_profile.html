@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+{% block title_block %} Profile {% endblock %}
+
+{% block body_block %}
+
+    <h2>Welcome</h2>        <!-- have to display email {{ form.email }}'s-->
+
+    <form method="POST">
+        {{ form|crispy }}
+        {% csrf_token %}
+        <button type="submit" class="btn btn-success btn-sm">Save</button>
+    </form>
+    <br>
+    <br>
+{% endblock %}

@@ -1,0 +1,6 @@
+django==2.2.4
+pillow==6.2.1
+django-crispy-forms
+requests
+django-cleanup
+mysqlclient
