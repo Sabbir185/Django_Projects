@@ -18,7 +18,7 @@
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fas fa-user-tie"></i> {{request.user.user_profile.username}}</a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                         <a class="dropdown-item" href="{% url 'app_login:profile' %}">Profile</a>
-                        <a class="dropdown-item">Order</a>
+                        <a href="{% url 'app_payment:order' %}" class="dropdown-item">Order</a>
                         <div class="dropdown-divider"></div>
                         <a class="dropdown-item" href="{% url 'app_login:logout' %}">Logout</a>
                     </div>
