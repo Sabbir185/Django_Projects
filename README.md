@@ -1,2 +1,2 @@
 # Django_Projects
-##Web Applications by using Django framework
+## Web Applications by using Django framework
