@@ -4,4 +4,4 @@
 ### JavaScript
 
 ## Run
-#### py manage.py runserver
+#### $ python manage.py runserver
