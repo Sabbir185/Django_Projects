@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+{% block body_block %}
+    <div class="col-4 offset-4">
+
+        <h3 style="margin-top:30px;">Create todo </h3>
+        <form method="POST">
+            {% csrf_token %}
+            {{ form|crispy }}
+            <br>
+            <button type="submit" class="btn btn-primary btn-md" >New Todo</button>
+        </form>
+    
+    </div>
+{% endblock body_block %}
+    
